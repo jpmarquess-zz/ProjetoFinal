@@ -7,14 +7,11 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js",
-    "teste": "npm run dev ../back-end/server/ npm start"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "webpack-bundle-analyzer": ">=3.3.2",
-    "webpack-dev-server": ">=3.1.11"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
