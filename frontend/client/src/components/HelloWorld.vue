@@ -31,23 +31,23 @@
 </template>
 
 <script>
-const API_URL = "http://localhost:4000/test";
- 
+const API_URL = 'http://localhost:4000/test';
+
 export default {
-  name: "home",
+  name: 'home',
   data: () => ({
-    error: "",
-    messages: ""
+    error: '',
+    messages: '',
   }),
- 
+
   mounted() {
     fetch(API_URL)
       .then(response => response.json())
-      .then(result => {
+      .then((result) => {
         this.messages = result;
       });
   },
-  methods: {}
+  methods: {},
 };
 </script>
 
