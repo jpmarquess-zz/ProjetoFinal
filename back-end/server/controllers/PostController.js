@@ -45,3 +45,16 @@ exports.posts = function (request, response) {
       console.log('query failed');
   })
 }
+
+// Gets post by id
+exports.show = function (request, response) {
+  id = request.params.id;
+  query = "SELECT * FROM posts WHERE post_id = ?";
+
+  connection.query(query, id, function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
+}

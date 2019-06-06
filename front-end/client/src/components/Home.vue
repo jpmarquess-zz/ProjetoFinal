@@ -15,8 +15,23 @@
         <v-container fluid fill-height>
           <v-layout>
             <v-flex xs12 sm6 offset-sm3>
-              <div v-for="post in posts" :key="post">
-                <h1>{{ post }}</h1>
+              <div v-for="post in posts" :key="post.post_id">
+                <v-card>
+                  <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+
+                  <v-card-title primary-title>
+                    <div>
+                      <h3 class="headline mb-0">{{ post.title }}</h3>
+                      <div>{{ post.body }}</div>
+                    </div>
+                  </v-card-title>
+
+                  <v-card-actions>
+                    <router-link v-bind:to="'posts/' + post.post_id">
+                      <v-btn flat color="orange">Explore</v-btn>
+                    </router-link>
+                  </v-card-actions>
+                </v-card>
               </div>
             </v-flex>
           </v-layout>
@@ -32,14 +47,11 @@ import axios from "axios";
 
 export default {
   name: "home",
-  data: () => ({
-    drawer: null,
-
-    return() {
-      posts = {};
-    },
-  }),
-
+  data() {
+    return {
+      posts: {}
+    };
+  },
   mounted() {
     axios
       .get("http://localhost:3000/posts")
