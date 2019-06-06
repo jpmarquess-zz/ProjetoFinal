@@ -6,7 +6,7 @@ var cors = require('cors');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-var postRouter = require('./routes/show');
+var postRouter = require('./routes/posts');
 
 var app = express();
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/show', postRouter);
+app.use('/posts', postRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

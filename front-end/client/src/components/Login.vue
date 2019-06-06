@@ -25,7 +25,7 @@
                     <v-text-field
                       prepend-icon="person"
                       name="login"
-                      label="Login"
+                      label="Username"
                       type="text"
                       color="blue darken-4"
                     ></v-text-field>

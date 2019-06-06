@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <v-app id="app">
-      
       <v-toolbar dark color="blue darken-4">
         <v-toolbar-title>Home</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -14,7 +13,12 @@
 
       <v-content>
         <v-container fluid fill-height>
-          <v-layout align-center justify-center>
+          <v-layout>
+            <v-flex xs12 sm6 offset-sm3>
+              <div v-for="post in posts" :key="post">
+                <h1>{{ post }}</h1>
+              </div>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-content>
@@ -27,20 +31,20 @@
 import axios from "axios";
 
 export default {
-  name: "Home",
+  name: "home",
   data: () => ({
-    drawer: null
-  }),
+    drawer: null,
 
-  return() {
-    users = {};
-  },
+    return() {
+      posts = {};
+    },
+  }),
 
   mounted() {
     axios
-      .get("http://localhost:3000/show")
+      .get("http://localhost:3000/posts")
       .then(response => {
-        this.users = response.data;
+        this.posts = response.data;
       })
       .catch(error => {
         console.log(error);

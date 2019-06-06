@@ -34,12 +34,11 @@ exports.index = function (request, response) {
   })
 }
 
-// Gets user by id
-exports.show = function (request, response) {
-  id = request.params.id;
-  query = "SELECT * FROM users WHERE user_id = ?";
+// Gets posts
+exports.posts = function (request, response) {
+  query = "SELECT * FROM posts";
 
-  connection.query(query, id, function (error, results, fields) {
+  connection.query(query, function (error, results, fields) {
     if (!error)
       response.send(results);
     else
