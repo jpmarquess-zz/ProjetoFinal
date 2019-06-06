@@ -1,4 +1,4 @@
-var express = require("express");
+var express = require('express');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var app = express();
@@ -16,7 +16,7 @@ connection.connect(function (err) {
     return;
   }
 
-  console.log('connected as id ' + connection.threadId);
+  console.log('connected to database');
 });
 
 app.use(bodyParser.json());
@@ -24,25 +24,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Gets user
 exports.index = function (request, response) {
-    query = "SELECT * FROM users";
+  query = "SELECT * FROM users";
 
-    connection.query(query, function (error, results, fields) {
-        if (!error)
-            response.send(results);
-        else
-            console.log('query failed');
-    })
+  connection.query(query, function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
 }
 
 // Gets user by id
-exports.post = function (request, response) {
-    id = request.params.id;
-    query = "SELECT * FROM users WHERE user_id = ?";
+exports.show = function (request, response) {
+  id = request.params.id;
+  query = "SELECT * FROM users WHERE user_id = ?";
 
-    connection.query(query, id, function (error, results, fields) {
-        if (!error)
-            response.send(results);
-        else
-            console.log('query failed');
-    })
+  connection.query(query, id, function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
 }

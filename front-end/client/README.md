@@ -1,6 +1,6 @@
 # client
 
-> Projeto Final - Fron-End
+> A Vue.js project
 
 ## Build Setup
 
