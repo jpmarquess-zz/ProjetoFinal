@@ -24,10 +24,11 @@
                   <v-form>
                     <v-text-field
                       prepend-icon="person"
-                      name="login"
+                      name="username"
                       label="Username"
                       type="text"
                       color="blue darken-4"
+                      v-model="post.username"
                     ></v-text-field>
 
                     <v-text-field
@@ -37,12 +38,13 @@
                       label="Password"
                       type="password"
                       color="blue darken-4"
+                      v-model="post.password"
                     ></v-text-field>
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn dark color="blue darken-4">Submit</v-btn>
+                  <v-btn dark color="blue darken-4" @click="addToApi">Submit</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>
@@ -58,7 +60,33 @@
 import axios from "axios";
 
 export default {
-  name: "Signup"
+  name: "Signup",
+  data() {
+    return {
+      post: {
+        username: null,
+        password: null
+      }
+    }
+  },
+  methods: {
+    addToApi() {
+      let newUser = {
+        username: this.post.username,
+        password: this.post.password
+      }
+
+      console.log(newUser);
+
+      axios({
+        method: 'post',
+        url: '/posts/create',
+        data: {
+          newUser
+        }
+      })
+    }
+  }
 };
 </script>
 

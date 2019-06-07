@@ -58,3 +58,17 @@ exports.show = function (request, response) {
       console.log('query failed');
   })
 }
+
+exports.create = function (request, response) {
+  username = req.body.username;
+  password = req.body.password;
+
+  qeury = "INSERT INTO users(username, password) VALUES(?, ?)";
+
+  connection.query(query, [username, password], function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
+}

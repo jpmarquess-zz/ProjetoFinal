@@ -16,7 +16,7 @@
           <v-layout>
             <v-flex xs12 sm6 offset-sm3>
               <div v-for="post in posts" :key="post.post_id">
-                <v-card>
+                <v-card class="mb-5">
                   <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
 
                   <v-card-title primary-title>
