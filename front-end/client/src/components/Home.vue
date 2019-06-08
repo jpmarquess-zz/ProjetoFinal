@@ -6,6 +6,7 @@
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">Home</v-btn>
+          <v-btn flat to="create">Create</v-btn>
           <v-btn flat to="login">Login</v-btn>
           <v-btn flat to="signup">Signup</v-btn>
         </v-toolbar-items>
@@ -15,9 +16,9 @@
         <v-container fluid fill-height>
           <v-layout>
             <v-flex xs12 sm6 offset-sm3>
-              <div v-for="post in posts" :key="post.post_id">
+              <div v-for="post in posts" :key="post.post_id" class="mt-5">
                 <v-card class="mb-5">
-                  <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+                  <v-img :src="post.image" height="500px"></v-img>
 
                   <v-card-title primary-title>
                     <div>

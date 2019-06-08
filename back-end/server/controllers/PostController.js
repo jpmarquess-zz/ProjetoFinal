@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var app = express();
 
+// Database connection
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -59,11 +60,12 @@ exports.show = function (request, response) {
   })
 }
 
-exports.create = function (request, response) {
-  username = req.body.username;
-  password = req.body.password;
+// Signup
+exports.adduser = function (request, response) {
+  username = request.body.username;
+  password = request.body.password;
 
-  qeury = "INSERT INTO users(username, password) VALUES(?, ?)";
+  query = "INSERT INTO users(username, password) VALUES(?, ?)";
 
   connection.query(query, [username, password], function (error, results, fields) {
     if (!error)
@@ -72,3 +74,5 @@ exports.create = function (request, response) {
       console.log('query failed');
   })
 }
+
+// Create post

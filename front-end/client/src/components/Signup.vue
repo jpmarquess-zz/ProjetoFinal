@@ -6,6 +6,7 @@
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">Home</v-btn>
+          <v-btn flat to="create">Create</v-btn>
           <v-btn flat to="login">Login</v-btn>
           <v-btn flat to="signup">Signup</v-btn>
         </v-toolbar-items>
@@ -30,8 +31,16 @@
                       color="blue darken-4"
                       v-model="post.username"
                     ></v-text-field>
-
                     <v-text-field
+                      prepend-icon="lock"
+                      v-model="post.password"
+                      :append-icon="show1 ? 'visibility' : 'visibility_off'"
+                      :type="show1 ? 'text' : 'password'"
+                      name="input-10-1"
+                      @click:append="show1 = !show1"
+                      label="Password"
+                    ></v-text-field>
+                    <!--<v-text-field
                       id="password"
                       prepend-icon="lock"
                       name="password"
@@ -39,7 +48,7 @@
                       type="password"
                       color="blue darken-4"
                       v-model="post.password"
-                    ></v-text-field>
+                    ></v-text-field>-->
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
@@ -66,6 +75,16 @@ export default {
       post: {
         username: null,
         password: null
+      },
+      show1: false,
+      show2: true,
+      show3: false,
+      show4: false,
+      password: 'Password',
+      rules: {
+        required: value => !!value || 'Required.',
+        min: v => v.length >= 8 || 'Min 8 characters',
+        emailMatch: () => ('The email and password you entered don\'t match')
       }
     }
   },
@@ -75,16 +94,14 @@ export default {
         username: this.post.username,
         password: this.post.password
       }
-
-      console.log(newUser);
-
-      axios({
-        method: 'post',
-        url: '/posts/create',
-        data: {
-          newUser
-        }
-      })
+      
+      axios.post("http://localhost:3000/posts/adduser", newUser)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     }
   }
 };

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
+import Create from '@/components/Create'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Show from '@/components/Show'
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/create',
+      name: 'create',
+      component: Create
     },
     {
       path: '/login',
