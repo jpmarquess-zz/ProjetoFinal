@@ -23,7 +23,7 @@ connection.connect(function (err) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Gets user
+// Gets users
 exports.index = function (request, response) {
   query = "SELECT * FROM users";
 
@@ -76,3 +76,28 @@ exports.adduser = function (request, response) {
 }
 
 // Create post
+exports.create = function (request, response) {
+  title = request.body.title;
+  body = request.body.body;
+
+  query = "INSERT INTO posts(title, body) VALUES(?, ?)";
+
+  connection.query(query, [title, body], function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
+}
+
+// Gets comments
+exports.comment = function (request, response) {
+  query = "SELECT * FROM posts";
+
+  connection.query(query, function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
+}

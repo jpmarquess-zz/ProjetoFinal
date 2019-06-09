@@ -29,11 +29,11 @@
                       label="Username"
                       type="text"
                       color="blue darken-4"
-                      v-model="post.username"
+                      v-model="user.username"
                     ></v-text-field>
                     <v-text-field
                       prepend-icon="lock"
-                      v-model="post.password"
+                      v-model="user.password"
                       :append-icon="show1 ? 'visibility' : 'visibility_off'"
                       :type="show1 ? 'text' : 'password'"
                       name="input-10-1"
@@ -72,7 +72,7 @@ export default {
   name: "Signup",
   data() {
     return {
-      post: {
+      user: {
         username: null,
         password: null
       },
@@ -91,8 +91,8 @@ export default {
   methods: {
     addToApi() {
       let newUser = {
-        username: this.post.username,
-        password: this.post.password
+        username: this.user.username,
+        password: this.user.password
       }
       
       axios.post("http://localhost:3000/posts/adduser", newUser)

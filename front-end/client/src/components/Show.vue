@@ -26,18 +26,30 @@
                       <div>{{ post.body }}</div>
                     </div>
                   </v-card-title>
-
-                  <v-card-actions>
-                    <router-link v-bind:to="'posts/' + post.post_id">
-                      <v-btn flat color="orange">Explore</v-btn>
-                    </router-link>
-                  </v-card-actions>
                 </v-card>
               </div>
             </v-flex>
           </v-layout>
         </v-container>
       </v-content>
+  
+      <!-- <v-content>
+        <v-container fluid fill-height>
+          <v-layout>
+            <v-flex xs12 sm6 offset-sm3>
+              <div v-for="comment in comments" :key="comment.comment_id" class="mt-5">
+                <v-card class="mb-5">
+                  <v-card-title primary-title>
+                    <div>
+                      <div>{{ comment.body }}</div>
+                    </div>
+                  </v-card-title>
+                </v-card>
+              </div>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content> -->
       <v-footer app></v-footer>
     </v-app>
   </div>
@@ -50,19 +62,37 @@ export default {
   name: "show",
   data() {
     return {
-      posts: {}
+      comments: {}
     };
   },
 
   mounted() {
+    // axios
+    //   .get("http://localhost:3000/posts/" + this.$route.params.id)
+    //   .then(response => {
+    //     this.posts = response.data;
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+
     axios
-      .get("http://localhost:3000/posts/" + this.$route.params.id)
+      .get("http://localhost:3000/posts/comment")
       .then(response => {
-        this.posts = response.data;
+        console.log(response.data);
       })
       .catch(error => {
         console.log(error);
-      });
+      })
+
+    // axios.all([
+    //   axios.get("http://localhost:3000/posts/" + this.$route.params.id),
+    //   axios.get("http://localhost:3000/posts/comment")
+    // ])
+    // .then(axios.spread((postRes, commentRes) => {
+    //   this.posts = postRes.data;
+    //   this.comments = commentRes.data;
+    // }));
   }
 };
 </script>

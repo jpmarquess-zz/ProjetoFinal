@@ -19,11 +19,11 @@
             <v-card-text>
               <v-text-field
                 ref="title"
-                v-model="title"
+                v-model="post.title"
                 :rules="[
-              () => !!title || 'This field is required',
-              () => !!title && title.length <= 25 || 'Title must be less than 25 characters',
-              titleCheck
+              () => !!post.title || 'This field is required',
+              () => !!post.title && post.title.length <= 25 || 'Title must be less than 25 characters',
+              post.titleCheck
             ]"
                 label="Title"
                 placeholder="Enter post title"
@@ -33,11 +33,11 @@
               ></v-text-field>
               <v-textarea
                 ref="body"
-                v-model="body"
+                v-model="post.body"
                 :rules="[
-              () => !!body || 'This field is required',
-              () => !!body && body.length <= 25 || 'Body must be less than 25 characters',
-              bodyCheck
+              () => !!post.body || 'This field is required',
+              () => !!post.body && post.body.length <= 25 || 'Body must be less than 25 characters',
+              post.bodyCheck
             ]"
                 label="Body"
                 placeholder="Enter post body"
@@ -61,7 +61,7 @@
                   <span>Refresh form</span>
                 </v-tooltip>
               </v-slide-x-reverse-transition>
-              <v-btn color="primary" flat @click="submit">Submit</v-btn>
+              <v-btn color="primary" flat @click="addToApi">Submit</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -79,8 +79,28 @@ export default {
   name: "create",
   data() {
     return {
-      rules: [v => v.length <= 25 || "Max 25 characters"]
+      rules: [v => v.length <= 25 || "Max 25 characters"],
+      post: {
+        title: null,
+        body: null
+      }
     };
+  },
+  methods: {
+    addToApi() {
+      let newPost = {
+        title: this.post.title,
+        body: this.post.body
+      }
+      
+      axios.post("http://localhost:3000/posts/create", newPost)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
   }
 };
 </script>
