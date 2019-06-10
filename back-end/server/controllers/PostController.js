@@ -64,7 +64,7 @@ exports.show = function (request, response) {
 exports.comment = function (request, response) {
   id = request.params.id;
 
-  query = "SELECT comments.comment_id, users.username, comments.body FROM ((comments INNER JOIN users ON comments.user_id = users.user_id) INNER JOIN posts ON comments.post_id = posts.post_id) WHERE posts.post_id = ?";
+  query = "SELECT comments.comment_id, users.username, comments.body, comments.createdAt FROM ((comments INNER JOIN users ON comments.user_id = users.user_id) INNER JOIN posts ON comments.post_id = posts.post_id) WHERE posts.post_id = ? ORDER BY comments.createdAt ASC";
 
   connection.query(query, id, function (error, results, fields) {
     if (!error)
