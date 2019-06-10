@@ -7,6 +7,7 @@ router.get("/", PostController.posts);
 router.get("/:id", PostController.show);
 router.post("/adduser", PostController.adduser);
 router.post("/create", PostController.create);
-router.get("/comment", PostController.comment);
+router.get("/comment/:id", PostController.comment);
+router.post("/comment/reply/:id", PostController.comment_add);
 
 module.exports = router;

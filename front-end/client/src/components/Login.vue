@@ -1,17 +1,6 @@
 <template>
   <div class="login">
     <v-app id="app">
-      <v-toolbar dark color="blue darken-4">
-        <v-toolbar-title>Login</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn flat to="/">Home</v-btn>
-          <v-btn flat to="create">Create</v-btn>
-          <v-btn flat to="login">Login</v-btn>
-          <v-btn flat to="signup">Signup</v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-
       <v-content>
         <v-container fluid fill-height>
           <v-layout align-center justify-center>
@@ -50,7 +39,6 @@
           </v-layout>
         </v-container>
       </v-content>
-      <v-footer app></v-footer>
     </v-app>
   </div>
 </template>

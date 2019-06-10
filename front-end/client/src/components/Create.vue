@@ -1,17 +1,6 @@
 <template>
   <div class="create">
     <v-app id="app">
-      <v-toolbar dark color="blue darken-4">
-        <v-toolbar-title>Create Post</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn flat to="/">Home</v-btn>
-          <v-btn flat to="create">Create</v-btn>
-          <v-btn flat to="login">Login</v-btn>
-          <v-btn flat to="signup">Signup</v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-
       <v-layout justify-center class="mt-5">
         <v-flex xs12 sm10 md8 lg6>
           <v-card ref="form">
@@ -66,8 +55,6 @@
           </v-card>
         </v-flex>
       </v-layout>
-
-      <v-footer app></v-footer>
     </v-app>
   </div>
 </template>

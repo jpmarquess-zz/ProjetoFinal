@@ -60,6 +60,35 @@ exports.show = function (request, response) {
   })
 }
 
+// Gets comments
+exports.comment = function (request, response) {
+  id = request.params.id;
+
+  query = "SELECT comments.comment_id, users.username, comments.body FROM ((comments INNER JOIN users ON comments.user_id = users.user_id) INNER JOIN posts ON comments.post_id = posts.post_id) WHERE posts.post_id = ?";
+
+  connection.query(query, id, function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
+}
+
+// Add comments
+exports.comment_add = function (request, response) {
+  id = request.params.id;
+  body = request.body.body;
+
+  query = "INSERT INTO comments(user_id, post_id, body) VALUES(22, ?, ?)";
+
+  connection.query(query, [id, body], function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
+}
+
 // Signup
 exports.adduser = function (request, response) {
   username = request.body.username;
@@ -83,18 +112,6 @@ exports.create = function (request, response) {
   query = "INSERT INTO posts(title, body) VALUES(?, ?)";
 
   connection.query(query, [title, body], function (error, results, fields) {
-    if (!error)
-      response.send(results);
-    else
-      console.log('query failed');
-  })
-}
-
-// Gets comments
-exports.comment = function (request, response) {
-  query = "SELECT * FROM posts";
-
-  connection.query(query, function (error, results, fields) {
     if (!error)
       response.send(results);
     else

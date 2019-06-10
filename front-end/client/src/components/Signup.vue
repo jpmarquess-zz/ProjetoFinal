@@ -1,17 +1,6 @@
 <template>
   <div class="signup">
     <v-app id="app">
-      <v-toolbar dark color="blue darken-4">
-        <v-toolbar-title>Signup</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn flat to="/">Home</v-btn>
-          <v-btn flat to="create">Create</v-btn>
-          <v-btn flat to="login">Login</v-btn>
-          <v-btn flat to="signup">Signup</v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-
       <v-content>
         <v-container fluid fill-height>
           <v-layout align-center justify-center>
@@ -40,15 +29,6 @@
                       @click:append="show1 = !show1"
                       label="Password"
                     ></v-text-field>
-                    <!--<v-text-field
-                      id="password"
-                      prepend-icon="lock"
-                      name="password"
-                      label="Password"
-                      type="password"
-                      color="blue darken-4"
-                      v-model="post.password"
-                    ></v-text-field>-->
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
@@ -60,7 +40,6 @@
           </v-layout>
         </v-container>
       </v-content>
-      <v-footer app></v-footer>
     </v-app>
   </div>
 </template>
