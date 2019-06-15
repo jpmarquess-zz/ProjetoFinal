@@ -1,6 +1,6 @@
 <template>
     <v-toolbar dark color="blue darken-4">
-    <v-toolbar-title>Home</v-toolbar-title>
+    <v-toolbar-title>Setup Wars</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat to="/">Home</v-btn>

@@ -23,18 +23,6 @@ connection.connect(function (err) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Gets users
-exports.index = function (request, response) {
-  query = "SELECT * FROM users";
-
-  connection.query(query, function (error, results, fields) {
-    if (!error)
-      response.send(results);
-    else
-      console.log('query failed');
-  })
-}
-
 // Gets posts
 exports.posts = function (request, response) {
   query = "SELECT * FROM posts";
@@ -79,7 +67,7 @@ exports.comment_add = function (request, response) {
   id = request.params.id;
   body = request.body.body;
 
-  query = "INSERT INTO comments(user_id, post_id, body) VALUES(22, ?, ?)";
+  query = "INSERT INTO comments(user_id, post_id, body) VALUES(1, ?, ?)";
 
   connection.query(query, [id, body], function (error, results, fields) {
     if (!error)
@@ -117,4 +105,34 @@ exports.create = function (request, response) {
     else
       console.log('query failed');
   })
+}
+
+// Delete post
+exports.delete_post = function (request, response) {
+  id = request.params.id;
+
+  query = "DELETE FROM posts WHERE post_id = ?";
+
+  connection.query(query, id, function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
+
+}
+
+// Delete user
+exports.delete_user = function (request, response) {
+  id = request.params.id;
+
+  query = "DELETE FROM users WHERE user_id = ?";
+
+  connection.query(query, id, function (error, results, fields) {
+    if (!error)
+      response.send(results);
+    else
+      console.log('query failed');
+  })
+
 }
